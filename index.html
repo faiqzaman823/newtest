@@ -3,241 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal // Bio_</title>
+    <title>Curriculum Vitae</title>
     <style>
-        :root {
-            --bg-color: #0a0a0a;
-            --terminal-green: #00ff66;
-            --dim-green: #008833;
-            --text-white: #ffffff;
-            --panel-bg: #141414;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--terminal-green);
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        .terminal-window {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            color: #333;
             max-width: 800px;
             margin: 0 auto;
-            border: 1px solid var(--dim-green);
-            background-color: var(--panel-bg);
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+            padding: 20px;
         }
-
-        .terminal-header {
-            background-color: #222;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--dim-green);
-        }
-
-        .buttons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #ff5f56;
-        }
-        .btn.min { background-color: #ffbd2e; }
-        .btn.max { background-color: #27c93f; }
-
-        .terminal-title {
-            color: var(--text-white);
-            font-size: 14px;
-        }
-
-        .terminal-body {
-            padding: 30px;
-        }
-
         header {
-            margin-bottom: 40px;
-            border-bottom: 1px dashed var(--dim-green);
-            padding-bottom: 20px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
-
         h1 {
-            font-size: 32px;
-            color: var(--text-white);
-            margin-bottom: 10px;
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+            font-size: 28px;
         }
-
-        .subtitle {
-            font-size: 18px;
-            color: var(--terminal-green);
-        }
-
-        .blink {
-            animation: blinker 1s linear infinite;
-        }
-
-        @keyframes blinker {
-            50% { opacity: 0; }
-        }
-
-        section {
-            margin-bottom: 30px;
-        }
-
         h2 {
-            font-size: 20px;
-            color: var(--text-white);
-            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            font-size: 18px;
             text-transform: uppercase;
         }
-
-        p {
-            color: #b0b0b0;
+        .subtitle {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+        .contact-info {
+            font-size: 14px;
+        }
+        .job, .education {
             margin-bottom: 15px;
         }
-
-        .grid-skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .skill-item {
-            border: 1px solid var(--dim-green);
-            padding: 10px;
-            background: rgba(0, 255, 102, 0.02);
-        }
-
-        .skill-name {
-            color: var(--text-white);
+        .job-title, .degree {
             font-weight: bold;
+            color: #34495e;
         }
-
-        .log-list {
-            list-style: none;
+        .company, .institution {
+            font-style: italic;
+            color: #555;
         }
-
-        .log-list li {
-            margin-bottom: 10px;
-            position: relative;
+        .date {
+            float: right;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        ul {
+            margin: 5px 0 0 0;
             padding-left: 20px;
         }
-
-        .log-list li::before {
-            content: ">>";
-            position: absolute;
-            left: 0;
-            color: var(--terminal-green);
+        li {
+            margin-bottom: 3px;
         }
-
-        .timestamp {
-            color: var(--dim-green);
-            margin-right: 10px;
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
-
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 12px;
-            color: var(--dim-green);
-            border-top: 1px dashed var(--dim-green);
-            padding-top: 20px;
+        .skills-group {
+            margin-bottom: 5px;
         }
-
-        a {
-            color: var(--terminal-green);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--terminal-green);
-        }
-
-        a:hover {
-            color: var(--text-white);
-            background-color: var(--dim-green);
+        .skills-label {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<div class="terminal-window">
-    <div class="terminal-header">
-        <div class="buttons">
-            <div class="btn"></div>
-            <div class="btn min"></div>
-            <div class="btn max"></div>
+    <header>
+        <h1>Your Name</h1>
+        <div class="subtitle">Software Engineer | Reverse Engineer | Ethical Hacker</div>
+        <div class="contact-info">
+            Email: email@example.com | Phone: +123 456 7890 | Location: City, Country<br>
+            GitHub: github.com | LinkedIn: linkedin.com
         </div>
-        <div class="terminal-title">guest@neophyte_bio:~</div>
-        <div></div>
-    </div>
-    
-    <div class="terminal-body">
-        <header>
-            <h1>NEOPHYTE<span class="blink">_</span></h1>
-            <p class="subtitle">Security Researcher // Bug Bounty Hunter // Code Architect</p>
-        </header>
+    </header>
 
-        <section id="about">
-            <h2>[01] Overview</h2>
-            <p>Breaking systems to make them safer. Specialising in penetration testing, reverse engineering, and automated threat hunting. I turn chaotic source code into secure infrastructure.</p>
-        </section>
+    <section>
+        <h2>Professional Summary</h2>
+        <p>Security-focused Software Engineer with expertise in low-level reverse engineering and penetration testing. Skilled in identifying vulnerabilities, building secure applications, and analyzing complex malware architectures to strengthen organizational defense systems.</p>
+    </section>
 
-        <section id="skills">
-            <h2>[02] Expertise_Matrix</h2>
-            <div class="grid-skills">
-                <div class="skill-item">
-                    <div class="skill-name">Penetration Testing</div>
-                    <div>Web, API, Network Infrastructure</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">Languages</div>
-                    <div>Python, Go, Bash, C, Assembly</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">Tools</div>
-                    <div>Burp Suite, Ghidra, Wireshark</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">DevOps Security</div>
-                    <div>Docker, Kubernetes, CI/CD Hardening</div>
-                </div>
+    <section>
+        <h2>Core Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skills-group">
+                <span class="skills-label">Reverse Engineering:</span> IDA Pro, Ghidra, x64dbg, Binary Ninja.
             </div>
-        </section>
+            <div class="skills-group">
+                <span class="skills-label">Ethical Hacking:</span> Burp Suite, Metasploit, Nmap, Wireshark.
+            </div>
+            <div class="skills-group">
+                <span class="skills-label">Languages:</span> C, C++, Python, Assembly (x86/x64), Go.
+            </div>
+            <div class="skills-group">
+                <span class="skills-label">Security:</span> AppSec, Code Auditing, Malware Analysis.
+            </div>
+        </div>
+    </section>
 
-        <section id="history">
-            <h2>[03] Activity_Log</h2>
-            <ul class="log-list">
-                <li><span class="timestamp">[2025-CURRENT]</span> Lead Security Engineer at CyberShield Corp.</li>
-                <li><span class="timestamp">[2024]</span> Discovered critical RCE vulnerability in major cloud platform (CVE-2024-XXXX).</li>
-                <li><span class="timestamp">[2023]</span> Top 100 ranking on Bug Bounty platform.</li>
-                <li><span class="timestamp">[2022]</span> Completed OSCP (Offensive Security Certified Professional) certification.</li>
+    <section>
+        <h2>Professional Experience</h2>
+        
+        <div class="job">
+            <span class="date">2024 - Present</span>
+            <div class="job-title">Senior Application Security Engineer</div>
+            <div class="company">Tech Defense Solutions</div>
+            <ul>
+                <li>Performed static and dynamic analysis on proprietary software to discover vulnerabilities.</li>
+                <li>Developed automated Python tools to streamline internal penetration testing workflows.</li>
+                <li>Conducted binary reverse engineering to patch critical zero-day software exploits.</li>
             </ul>
-        </section>
+        </div>
 
-        <section id="contact">
-            <h2>[04] Establish_Connection</h2>
-            <p>Secure communications preferred.</p>
-            <p>Email: <a href="mailto:neophyte@proton.me">neophyte@proton.me</a></p>
-            <p>GitHub: <a href="#" target="_blank">github.com</a></p>
-            <p>PGP Key: <a href="#" target="_blank">0x7F3A2B1C...</a></p>
-        </section>
+        <div class="job">
+            <span class="date">2021 - 2024</span>
+            <div class="job-title">Software Engineer & Vulnerability Researcher</div>
+            <div class="company">Cyber Systems Inc.</div>
+            <ul>
+                <li>Designed and maintained secure backend applications using C++ and Go.</li>
+                <li>Audited source code to identify memory leaks, buffer overflows, and injection flaws.</li>
+                <li>Collaborated with incident response teams to reverse-engineer ongoing malware threats.</li>
+            </ul>
+        </div>
+    </section>
 
-        <footer>
-            <p>SYSTEM STATUS: SECURE // OPERATIONAL</p>
-        </footer>
-    </div>
-</div>
+    <section>
+        <h2>Certifications</h2>
+        <ul>
+            <li>OSCP (Offensive Security Certified Professional)</li>
+            <li>CEH (Certified Ethical Hacker)</li>
+            <li>CREA (Certified Reverse Engineering Analyst)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        <div class="education">
+            <span class="date">2017 - 2021</span>
+            <div class="degree">Bachelor of Science in Computer Science</div>
+            <div class="institution">University Name</div>
+        </div>
+    </section>
 
 </body>
 </html>
