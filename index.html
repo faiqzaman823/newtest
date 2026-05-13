@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google AI Poisoning Test Sandbox</title>
+</head>
+<body>
+
+    <h1>Bug Bounty Testing Sandbox</h1>
+    <p>Leave a comment below to test XSS or AI injection parameters.</p>
+
+    <!-- Comment Form -->
+    <form id="commentForm">
+        <textarea id="commentInput" rows="4" cols="50" placeholder="Type your comment or malicious payload here..."></textarea><br>
+        <button type="submit">Submit Comment</button>
+    </form>
+
+    <h3>Live Comments:</h3>
+    <div id="commentsContainer"></div>
+
+    <script>
+        // Form submit handling
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const commentText = document.getElementById('commentInput').value;
+            const container = document.getElementById('commentsContainer');
+            
+            // Vulnerable Code: Yeh input ko sanitize nahi karta (XSS and HTML injection allowed)
+            const newComment = document.createElement('div');
+            newComment.innerHTML = commentText; 
+            
+            container.appendChild(newComment);
+            document.getElementById('commentInput').value = ''; // Clear input
+        });
+    </script>
+
+</body>
+</html>
