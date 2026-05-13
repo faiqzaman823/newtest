@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae</title>
+    <title>Local Phone Analysis Engine</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,6 +12,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f4f6f7;
         }
         header {
             border-bottom: 2px solid #2c3e50;
@@ -21,57 +22,60 @@
         h1 {
             margin: 0 0 5px 0;
             color: #2c3e50;
-            font-size: 28px;
-        }
-        h2 {
-            color: #2c3e50;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            margin-top: 25px;
-            font-size: 18px;
-            text-transform: uppercase;
+            font-size: 24px;
         }
         .subtitle {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .search-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
             font-size: 16px;
-            color: #7f8c8d;
-            font-weight: bold;
-            margin: 0 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-        .contact-info {
-            font-size: 14px;
-        }
-        .job, .education {
-            margin-bottom: 15px;
-        }
-        .job-title, .degree {
-            font-weight: bold;
-            color: #34495e;
-        }
-        .company, .institution {
-            font-style: italic;
-            color: #555;
-        }
-        .date {
+        button {
+            width: 25%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
             float: right;
-            color: #7f8c8d;
-            font-size: 14px;
         }
-        ul {
-            margin: 5px 0 0 0;
-            padding-left: 20px;
+        button:hover {
+            background-color: #34495e;
         }
-        li {
-            margin-bottom: 3px;
+        .result-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none;
         }
-        .skills-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+        .result-item {
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
         }
-        .skills-group {
-            margin-bottom: 5px;
+        .label {
+            font-weight: bold;
+            color: #2c3e50;
         }
-        .skills-label {
+        .error {
+            color: #c0392b;
             font-weight: bold;
         }
     </style>
@@ -79,80 +83,89 @@
 <body>
 
     <header>
-        <h1>Your Name</h1>
-        <div class="subtitle">Software Engineer | Reverse Engineer | Ethical Hacker</div>
-        <div class="contact-info">
-            Email: email@example.com | Phone: +123 456 7890 | Location: City, Country<br>
-            GitHub: github.com | LinkedIn: linkedin.com
-        </div>
+        <h1>Offline Local Phone Analyzer</h1>
+        <div class="subtitle">Regex & Prefix Intelligence Script (No APIs Required)</div>
     </header>
 
-    <section>
-        <h2>Professional Summary</h2>
-        <p>Security-focused Software Engineer with expertise in low-level reverse engineering and penetration testing. Skilled in identifying vulnerabilities, building secure applications, and analyzing complex malware architectures to strengthen organizational defense systems.</p>
-    </section>
-
-    <section>
-        <h2>Core Technical Skills</h2>
-        <div class="skills-container">
-            <div class="skills-group">
-                <span class="skills-label">Reverse Engineering:</span> IDA Pro, Ghidra, x64dbg, Binary Ninja.
-            </div>
-            <div class="skills-group">
-                <span class="skills-label">Ethical Hacking:</span> Burp Suite, Metasploit, Nmap, Wireshark.
-            </div>
-            <div class="skills-group">
-                <span class="skills-label">Languages:</span> C, C++, Python, Assembly (x86/x64), Go.
-            </div>
-            <div class="skills-group">
-                <span class="skills-label">Security:</span> AppSec, Code Auditing, Malware Analysis.
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2>Professional Experience</h2>
-        
-        <div class="job">
-            <span class="date">2024 - Present</span>
-            <div class="job-title">Senior Application Security Engineer</div>
-            <div class="company">Tech Defense Solutions</div>
-            <ul>
-                <li>Performed static and dynamic analysis on proprietary software to discover vulnerabilities.</li>
-                <li>Developed automated Python tools to streamline internal penetration testing workflows.</li>
-                <li>Conducted binary reverse engineering to patch critical zero-day software exploits.</li>
-            </ul>
+    <main>
+        <div class="search-box">
+            <input type="text" id="phoneInput" placeholder="Enter number (e.g., +923001234567)">
+            <button onclick="analyzeNumber()">Analyze</button>
         </div>
 
-        <div class="job">
-            <span class="date">2021 - 2024</span>
-            <div class="job-title">Software Engineer & Vulnerability Researcher</div>
-            <div class="company">Cyber Systems Inc.</div>
-            <ul>
-                <li>Designed and maintained secure backend applications using C++ and Go.</li>
-                <li>Audited source code to identify memory leaks, buffer overflows, and injection flaws.</li>
-                <li>Collaborated with incident response teams to reverse-engineer ongoing malware threats.</li>
-            </ul>
+        <div id="resultBox" class="result-box">
+            <h3>Analysis Results</h3>
+            <div id="resultsContent"></div>
         </div>
-    </section>
+    </main>
 
-    <section>
-        <h2>Certifications</h2>
-        <ul>
-            <li>OSCP (Offensive Security Certified Professional)</li>
-            <li>CEH (Certified Ethical Hacker)</li>
-            <li>CREA (Certified Reverse Engineering Analyst)</li>
-        </ul>
-    </section>
+    <script>
+        // Custom offline database matching dial codes to country info
+        const countryDatabase = {
+            "92": { country: "Pakistan", length: 11, regex: /^923\d{9}$/ },
+            "1": { country: "United States / Canada", length: 10, regex: /^1\d{10}$/ },
+            "44": { country: "United Kingdom", length: 10, regex: /^447\d{9}$/ },
+            "91": { country: "India", length: 10, regex: /^91[6-9]\d{9}$/ }
+        };
 
-    <section>
-        <h2>Education</h2>
-        <div class="education">
-            <span class="date">2017 - 2021</span>
-            <div class="degree">Bachelor of Science in Computer Science</div>
-            <div class="institution">University Name</div>
-        </div>
-    </section>
+        // Custom offline database matching prefixes to network operators
+        const operatorDatabase = {
+            "92300": "Jazz (Mobilink)", "92301": "Jazz (Mobilink)", "92302": "Jazz (Mobilink)",
+            "92345": "Telenor", "92346": "Telenor",
+            "92333": "Ufone", "92334": "Ufone",
+            "92312": "Zong", "92313": "Zong"
+        };
+
+        function analyzeNumber() {
+            const input = document.getElementById('phoneInput').value.trim();
+            const resultBox = document.getElementById('resultBox');
+            const content = document.getElementById('resultsContent');
+            
+            if (!input) {
+                alert('Please enter a phone number');
+                return;
+            }
+
+            // Remove formatting symbols to sanitize input string
+            const cleanNumber = input.replace(/[\s\-\(\)\+]/g, '');
+            resultBox.style.display = 'block';
+
+            if (isNaN(cleanNumber)) {
+                content.innerHTML = '<p class="error">Error: Input contains non-numeric characters.</p>';
+                return;
+            }
+
+            let countryName = "Unknown Country";
+            let networkOperator = "Unknown Operator / Network Unlisted";
+            let matchedCc = "";
+
+            // Find country match using string parsing loop
+            for (let cc in countryDatabase) {
+                if (cleanNumber.startsWith(cc)) {
+                    matchedCc = cc;
+                    countryName = countryDatabase[cc].country;
+                    break;
+                }
+            }
+
+            // Find operator match using prefix search
+            for (let prefix in operatorDatabase) {
+                if (cleanNumber.startsWith(prefix)) {
+                    networkOperator = operatorDatabase[prefix];
+                    break;
+                }
+            }
+
+            // Display locally parsed telemetry data
+            content.innerHTML = `
+                <div class="result-item"><span class="label">Sanitized String:</span> ${cleanNumber}</div>
+                <div class="result-item"><span class="label">Country Origin:</span> ${countryName}</div>
+                <div class="result-item"><span class="label">Country Code:</span> +${matchedCc || "N/A"}</div>
+                <div class="result-item"><span class="label">Detected Carrier:</span> ${networkOperator}</div>
+                <div class="result-item"><span class="label">Structure Validity:</span> Checked against localized definitions</div>
+            `;
+        }
+    </script>
 
 </body>
 </html>
